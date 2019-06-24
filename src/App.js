@@ -1,5 +1,7 @@
 import React from 'react';
 import './App.css';
+import './MemoryCard.css';
+import MemoryCard from './MemoryCard';
 
 function App() {
   return (
@@ -10,6 +12,30 @@ function App() {
           Match cards to win.
         </p>
       </header>
+      <div>
+        <MemoryCard/>
+        <MemoryCard/>
+        <MemoryCard/>
+        <MemoryCard/>
+      </div>
+      <div>
+        <MemoryCard/>
+        <MemoryCard/>
+        <MemoryCard/>
+        <MemoryCard/>
+      </div>
+      <div>
+        <MemoryCard/>
+        <MemoryCard/>
+        <MemoryCard/>
+        <MemoryCard/>
+      </div>
+      <div>
+        <MemoryCard/>
+        <MemoryCard/>
+        <MemoryCard/>
+        <MemoryCard/>
+      </div>
     </div>
   );
 }
