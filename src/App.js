@@ -31,11 +31,11 @@ function shuffle(a) {
 class App extends Component {
   state = {
     deck: generateDeck(), 
-    pickedCards: {}
+    pickedCards: []
   }
   
   pickCard(cardIndex){
-    if (cardIndex == this.state.deck[cardIndex]) {
+    if (cardIndex === this.state.deck[cardIndex]) {
       return;
     }
 

@@ -5,18 +5,6 @@ import PropTypes from 'prop-types';
 import './MemoryCard.css';
 
 class MemoryCard extends Component{
-    state = {
-        isFlipped: this.props.isFlipped,
-        symbol: this.props.symbol
-    }
-
-    handleClick = async (e) => {
-        e.preventDefault();
-        this.setState({
-            isFlipped: !this.state.isFlipped
-        });
-    }
-
     render(){
         let memoryCardInnerClass = 'MemoryCardInner';
 
@@ -30,7 +18,7 @@ class MemoryCard extends Component{
                     <div className='MemoryCardBack'>
                         <img src="https://www.digitalcrafts.com/img/DigitalCrafts-Logo-Wrench.png" className="MemoryImage" alt="MemoryImage"/>
                     </div>
-                    <div className='MemoryCardFront'>{this.state.symbol}</div>
+                    <div className='MemoryCardFront'>{this.props.symbol}</div>
 
                 </div>
             </div>
