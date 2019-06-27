@@ -10,6 +10,8 @@ class MemoryCard extends Component{
 
         if (!!this.props.isFlipped) {
             memoryCardInnerClass += ' flipped';
+        } else {
+            memoryCardInnerClass = 'MemoryCardInner';
         }
 
         return (

@@ -33,8 +33,25 @@ class App extends Component {
     deck: generateDeck(), 
     pickedCards: []
   }
+
+  unflipCards(card1Index, card2Index){
+    const card1 = {...this.state.deck[card1Index]};
+    const card2 = {...this.state.deck[card2Index]};
   
-  pickCard(cardIndex){
+    card1.isFlipped = false;
+    card2.isFlipped = false;
+  
+    const newDeck = this.state.deck.map((card,ind) => 
+      card1Index === ind ? card1 : card2Index === ind ? card2 : card
+    );
+    console.log('New Deck:', newDeck)
+    // this.setState({deck: newDeck});
+    // console.log('State Deck:', this.state.deck)
+    this.setState({deck:newDeck})
+
+  }
+  
+  async pickCard(cardIndex){
     if (cardIndex === this.state.deck[cardIndex]) {
       return;
     }
@@ -42,13 +59,28 @@ class App extends Component {
     const cardToFlip = {...this.state.deck[cardIndex]}
     cardToFlip.isFlipped = true;
 
-    const newPickedCards = this.state.pickedCards.concat(cardIndex);
-    const newDeck = this.state.deck.map((card,ind) => 
+    let newPickedCards = this.state.pickedCards.concat(cardIndex);
+    let newDeck = this.state.deck.map((card,ind) => 
       (cardIndex === ind) ? cardToFlip : card
     );
 
+    if(newPickedCards.length == 2){
+      const card1Index = newPickedCards[0];
+      const card2Index = newPickedCards[1];
+
+      if(newDeck[card1Index].symbol != newDeck[card2Index].symbol){
+        console.log('DOES NOT MATCH')
+        console.log(newDeck[card1Index].symbol,newDeck[card2Index].symbol)
+        setTimeout(()=> {
+          this.unflipCards(card1Index,card2Index)
+        },1000)     
+      } else {
+        console.log('matches')
+      }
+      newPickedCards = [];
+    }
+
     this.setState({deck: newDeck, pickedCards: newPickedCards});
-    console.log('test')
   }
 
   render(){
