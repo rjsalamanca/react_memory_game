@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 
+import PropTypes from 'prop-types';
+
 import './MemoryCard.css';
 
 class MemoryCard extends Component{
     state = {
-        isFlipped: false
+        isFlipped: this.props.isFlipped,
+        symbol: this.props.symbol
     }
 
     handleClick = async (e) => {
@@ -12,24 +15,22 @@ class MemoryCard extends Component{
         this.setState({
             isFlipped: !this.state.isFlipped
         });
-        console.log('FLIP')
     }
 
     render(){
         let memoryCardInnerClass = 'MemoryCardInner';
 
-        if (!!this.state.isFlipped) {
+        if (!!this.props.isFlipped) {
             memoryCardInnerClass += ' flipped';
         }
 
         return (
-
-            <div className='MemoryCard' onClick ={(e)=> this.handleClick(e)}>
+            <div className='MemoryCard' onClick ={this.props.pickCard}>
                 <div className={memoryCardInnerClass}>
                     <div className='MemoryCardBack'>
                         <img src="https://www.digitalcrafts.com/img/DigitalCrafts-Logo-Wrench.png" className="MemoryImage" alt="MemoryImage"/>
                     </div>
-                    <div className='MemoryCardFront'>∆</div>
+                    <div className='MemoryCardFront'>{this.state.symbol}</div>
 
                 </div>
             </div>
@@ -38,3 +39,9 @@ class MemoryCard extends Component{
 }
 
 export default MemoryCard;
+
+MemoryCard.propTypes = {
+    symbol: PropTypes.string,
+    isFlipped: PropTypes.bool,
+    pickCard: PropTypes.func
+}
